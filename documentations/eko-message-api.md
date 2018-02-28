@@ -73,16 +73,16 @@ These parameters can be asked for from Eko support.
   ```json
   [
     {
-      user_id: "57f2020d9b4dc14db42a1fc0",
-      username: "john.app",
-      firstname: "John",
-      lastname: "Appleseed"
+      "user_id": "57f2020d9b4dc14db42a1fc0",
+      "username": "john.app",
+      "firstname": "John",
+      "lastname": "Appleseed"
     },
     {
-      user_id: "57f2020d9b4dc14db42a1fc2",
-      username: "john.coo",
-      firstname: "John",
-      lastname: "Cooper"
+      "user_id": "57f2020d9b4dc14db42a1fc2",
+      "username": "john.coo",
+      "firstname": "John",
+      "lastname": "Cooper"
     }
   ]
   ```
