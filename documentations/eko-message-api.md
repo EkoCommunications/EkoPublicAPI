@@ -69,7 +69,7 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   [
     {
       user_id: "57f2020d9b4dc14db42a1fc0",
@@ -113,7 +113,7 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   [
     {
       workspace_id: "57f2020d9b4dc14db42a1fc0",
@@ -153,7 +153,7 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   {
     workspace_id: "57f2020d9b4dc14db42a1fc0",
     name: "IT department workspace",
@@ -200,7 +200,7 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   {
     workspace_id: "57f2020d9b4dc14db42a1fc5"
     name: "IT department workspace"
@@ -231,7 +231,7 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   {
     workspace_id: "57f2020d9b4dc14db42a1fc5",
     name: "IT department workspace 2018"
@@ -263,7 +263,7 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   {
     workspace_id: "57f2020d9b4dc14db42a1fc5"
     name: "IT department workspace"
@@ -297,7 +297,7 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   {
     workspace_id: "57f2020d9b4dc14db42a1fc5"
     name: "IT department workspace"
@@ -356,7 +356,7 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   [
     {
       topic_id: "57f2020d9b4dc14db42a1fc5",
@@ -393,10 +393,10 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   {
-    workspace_id: "57f2020d9b4dc14db42a1fc0"
-    topic_id: "57f2020d9b4dc14db42a1fc1"
+    workspace_id: "57f2020d9b4dc14db42a1fc0",
+    topic_id: "57f2020d9b4dc14db42a1fc1",
     name: "Monthly report topic"
   }
   ```
@@ -425,10 +425,10 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   {
-    workspace_id: "57f2020d9b4dc14db42a1fc0"
-    topic_id: "57f2020d9b4dc14db42a1fc1"
+    workspace_id: "57f2020d9b4dc14db42a1fc0",
+    topic_id: "57f2020d9b4dc14db42a1fc1",
     name: "Monthly report 2018"
   }
   ```
@@ -494,7 +494,7 @@ These parameters can be asked for from Eko support.
   ```
 
   **Response sample**
-  ```json
+  ```json5
   {
     message_data: "Hello Eko!",
     message_id: "57f2020d9b4dc14db42a1fc0",
