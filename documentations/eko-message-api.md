@@ -34,6 +34,7 @@ These parameters can be asked for from Eko support.
   #### 1. Get users
   ###### GET /v0/users
   Get all users from the network. By default, 25 users will be return.
+  
   | Request Parameters | Required | Default | Description |
   | ------------------ | -------- | ------- | ----------- |
   | skip               | no       | 0       | start index of user pagination |
@@ -72,16 +73,16 @@ These parameters can be asked for from Eko support.
   ```json5
   [
     {
-      user_id: "57f2020d9b4dc14db42a1fc0",
-      username: "john.app",
-      firstname: "John",
-      lastname: "Appleseed"
+      "user_id": "57f2020d9b4dc14db42a1fc0",
+      "username": "john.app",
+      "firstname": "John",
+      "lastname": "Appleseed"
     },
     {
-      user_id: "57f2020d9b4dc14db42a1fc2",
-      username: "john.coo",
-      firstname: "John",
-      lastname: "Cooper"
+      "user_id": "57f2020d9b4dc14db42a1fc2",
+      "username": "john.coo",
+      "firstname": "John",
+      "lastname": "Cooper"
     }
   ]
   ```
@@ -334,6 +335,7 @@ These parameters can be asked for from Eko support.
   #### 1. Get topics
   ###### GET /v0/topics
   Get all topics from a given workspace id. By default, 25 topics will be return.
+  
   | Request Parameters | Required | Default | Description |
   | ------------------ | -------- | ------- | ----------- |
   | workspace_id       | yes      |         | id of a workspace |
@@ -374,6 +376,7 @@ These parameters can be asked for from Eko support.
   #### 2. Create topic
   ###### POST /v0/topics
   Create a topic to given workspace id.
+  
   | Request Body | Required | Default | Description |
   | ------------ | -------- | ------- | ----------- |
   | workspace_id | yes      |         | id of a workspace |
@@ -404,6 +407,7 @@ These parameters can be asked for from Eko support.
   #### 3. Update topic
   ###### PUT /v0/topics
   Update a topic by given topic id.
+  
   | Request Body | Required | Default | Description |
   | ------------ | -------- | ------- | ----------- |
   | topic_id     | yes      |         | id of a topic |
