@@ -11,11 +11,11 @@
 These parameters can be asked for from Eko support.
 
 ### Content
-
+* [API Usage](#api-usage)
 * User Routes
   1. [GET /v0/users](#1-get-users) - get users
 * Workspace Routes
-  1. [GET /v0/workspaces](#1-get-workspaces) - get workspaces 
+  1. [GET /v0/workspaces](#1-get-workspaces) - get workspaces
   2. [GET /v0/workspaces/:id](#2-get-workspace-by-id) - get workspace by id
   3. [POST /v0/workspaces](#3-create-workspace) - create workspace
   4. [PUT /v0/workspaces](#4-update-workspace) - update workspace
@@ -28,19 +28,45 @@ These parameters can be asked for from Eko support.
   3. [PUT /v0/topics](#3-update-topic) - update topic
 * Message Routes
   1. [POST /v0/messages](#1-send-message) - send a message
+* [FAQ](#faq)
+
+### API Usage
+#### Request Header
+
+| Header       | Value            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+| eko-api-key  | *eko-api-key*    |
+| x-api-key    | *x-api-key*      |
+
+In case of /v0/messages route, user Content-Type as `multipart/form-data` instead.
+
+#### Error Handling
+Along with the HTTP methods that the API responds to, it will also return standard HTTP statuses, including error codes.
+
+```http
+HTTP/1.1 403 Forbidden
+{
+  "id":       "forbidden",
+  "message":  "You do not have access for the attempted action.",
+  "error_code": 403
+}
+```
 
 ### User Routes
 
   #### 1. Get users
   ###### GET /v0/users
   Get all users from the network. By default, 25 users will be return.
-  
+
   | Request Parameters | Required | Default | Description |
   | ------------------ | -------- | ------- | ----------- |
   | skip               | no       | 0       | start index of user pagination |
   | limit              | no       | 25      | limit for pagination (max: 50) |
   | search             | no       |         | a string to search for users by firstname, lastname (max: 10, min: 2 chars) |
-  | username           | no       |         | find by username (exact match) |
+  | username**         | no       |         | find by username (exact match) |
+
+  ** username parameter is supported on 9.3.0 ^
 
   **Curl example**
   ```bash
@@ -91,7 +117,7 @@ These parameters can be asked for from Eko support.
 
   #### 1. Get workspaces
   ###### GET /workspaces
-  Get all workspaces, which are created from this API, from the network. By default, 25 users will be return. The `user_count` attribute identify the number of users in a workspace which includes the bot itself. 
+  Get all workspaces, which are created from this API, from the network. By default, 25 users will be return. The `user_count` attribute identify the number of users in a workspace which includes the bot itself.
 
   | Request Parameters | Required | Default | Description |
   | ------------------ | -------- | ------- | ----------- |
@@ -106,7 +132,7 @@ These parameters can be asked for from Eko support.
     -H 'eko-api-key: 763de5858b2414750bf947fb1a551a67' \
     -H 'x-api-key: ajxPs55mrL3WNavrp7cuq9m563rT671nalruscad'
 
-  # Get 50 workwpaces with 50 offset 
+  # Get 50 workwpaces with 50 offset
   curl -X GET \
     https://eko-api.com/v0/workspaces?skip=50&limit=50 \
     -H 'eko-api-key: 763de5858b2414750bf947fb1a551a67' \
@@ -335,7 +361,7 @@ These parameters can be asked for from Eko support.
   #### 1. Get topics
   ###### GET /v0/topics
   Get all topics from a given workspace id. By default, 25 topics will be return.
-  
+
   | Request Parameters | Required | Default | Description |
   | ------------------ | -------- | ------- | ----------- |
   | workspace_id       | yes      |         | id of a workspace |
@@ -376,7 +402,7 @@ These parameters can be asked for from Eko support.
   #### 2. Create topic
   ###### POST /v0/topics
   Create a topic to given workspace id.
-  
+
   | Request Body | Required | Default | Description |
   | ------------ | -------- | ------- | ----------- |
   | workspace_id | yes      |         | id of a workspace |
@@ -407,7 +433,7 @@ These parameters can be asked for from Eko support.
   #### 3. Update topic
   ###### PUT /v0/topics
   Update a topic by given topic id.
-  
+
   | Request Body | Required | Default | Description |
   | ------------ | -------- | ------- | ----------- |
   | topic_id     | yes      |         | id of a topic |
@@ -505,4 +531,41 @@ These parameters can be asked for from Eko support.
     message_type: "text"
   }
   ```
+
+  **File Type Support**
+  ```
+  # MIME type
+  'jpg,jpeg' => 'image/jpeg'
+  'png' => 'image/png'
+  'mp4' => 'image/mp4'
+  'pdf' => 'application/pdf'
+  'zip' => 'application/zip'
+
+  'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  'doc' => 'application/msword'
+  'pptx' => 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+  'ppt' => 'application/vnd.ms-powerpoint'
+  'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  'xls' => 'application/vnd.ms-excel'
+  ```
+
+###FAQ
+
+1. Why can't I curl `POST /v0/messages` message with special characters (ie. กขค) ?
+    **->>>** If you are using cUrl client on windows, cUrl has an issue on [handling Unicode arguments in Windows](https://curl.haxx.se/docs/knownbugs.html#can_t_handle_Unicode_arguments_i).
+<br>
+2. How to send a message with new line character?
+    **->>>** Use `\n`. If you are using curl client and trying to send `\n` as parameter, curl will try to convert `\n` to \n string. To solve this, please refer to this [link](https://stackoverflow.com/questions/3872427/how-to-send-line-break-with-curl).
+<br>
+3. I need more bot accounts (more api keys). How can I achieve this?
+    **->>>** Please contact Eko via Eko Support account of your network.
+<br>
+4. Can I change the name of the bot?
+    **->>>** Yes you can, by logging in as a bot an edit its profile. If you do not have the bot password, contact Eko Support.
+<br>
+5. I created a workspace from the web, but wehen I try `GET /v0/workspaces`, I cannot see the workspace I recently created.
+    **->>>** `GET /v0/workspaces` will only fetch the workspace created by API.
+<br>
+
+
 
