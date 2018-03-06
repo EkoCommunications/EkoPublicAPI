@@ -553,19 +553,14 @@ HTTP/1.1 403 Forbidden
 
 1. Why can't I curl `POST /v0/messages` message with special characters (ie. กขค) ?
     **->>>** If you are using cUrl client on windows, cUrl has an issue on [handling Unicode arguments in Windows](https://curl.haxx.se/docs/knownbugs.html#can_t_handle_Unicode_arguments_i).
-<br>
 2. How to send a message with new line character?
     **->>>** Use `\n`. If you are using curl client and trying to send `\n` as parameter, curl will try to convert `\n` to \n string. To solve this, please refer to this [link](https://stackoverflow.com/questions/3872427/how-to-send-line-break-with-curl).
-<br>
 3. I need more bot accounts (more api keys). How can I achieve this?
     **->>>** Please contact Eko via Eko Support account of your network.
-<br>
 4. Can I change the name of the bot?
     **->>>** Yes you can, by logging in as a bot an edit its profile. If you do not have the bot password, contact Eko Support.
-<br>
 5. I created a workspace from the web, but wehen I try `GET /v0/workspaces`, I cannot see the workspace I recently created.
     **->>>** `GET /v0/workspaces` will only fetch the workspace created by API.
-<br>
 
 
 
