@@ -549,7 +549,7 @@ HTTP/1.1 403 Forbidden
   'xls' => 'application/vnd.ms-excel'
   ```
 
-###FAQ
+### FAQ
 
 1. Why can't I curl `POST /v0/messages` message with special characters (ie. กขค) ? <br>
     **->>>** If you are using cUrl client on windows, cUrl has an issue on [handling Unicode arguments in Windows](https://curl.haxx.se/docs/knownbugs.html#can_t_handle_Unicode_arguments_i). <br><br>
