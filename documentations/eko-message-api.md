@@ -27,7 +27,8 @@ These parameters can be asked for from Eko support.
   2. [POST /v0/topics](#2-create-topic) - create topic
   3. [PUT /v0/topics](#3-update-topic) - update topic
 * Message Routes
-  1. [POST /v0/messages](#1-send-message) - send a message
+  1. [POST /v0/messages](#1-send-message) - send a text message or file
+  2. [POST /v0/text-messages](#2-send-text-message) - send a text message
 * [FAQ](#faq)
 
 ### API Usage
@@ -466,7 +467,7 @@ HTTP/1.1 403 Forbidden
 ### Message Routes
 
   #### 1. Send message
-  ###### GET /v0/messages
+  ###### POST /v0/messages
   Send a text message or file to a workspace or a user private chat.
   - To send the content as a text message, specify `message` as a parameter.
   - To send the content as a file, specify `file` as a parameter.
@@ -486,7 +487,7 @@ HTTP/1.1 403 Forbidden
   ```bash
   # Send text message to a workspace
   curl -X POST \
-    https://eko-api.com/messages \
+    https://eko-api.com/v0/messages \
     -H 'content-type: multipart/form-data' \
     -H 'eko-api-key: 763de5858b2414750bf947fb1a59842c' \
     -H 'x-api-key: NYHvsNWbFB6fQ7C0nP0TV2H7xpvVTcMvaHeYspwQ' \
@@ -496,7 +497,7 @@ HTTP/1.1 403 Forbidden
 
   # Send text message to a user
   curl -X POST \
-    https://eko-api.com/messages \
+    https://eko-api.com/v0/messages \
     -H 'content-type: multipart/form-data' \
     -H 'eko-api-key: 763de5858b2414750bf947fb1a59842c' \
     -H 'x-api-key: NYHvsNWbFB6fQ7C0nP0TV2H7xpvVTcMvaHeYspwQ' \
@@ -505,7 +506,7 @@ HTTP/1.1 403 Forbidden
 
   # Send file message to a workspace
   curl -X POST \
-    https://eko-api.com/messages \
+    https://eko-api.com/v0/messages \
     -H 'content-type: multipart/form-data' \
     -H 'eko-api-key: 763de5858b2414750bf947fb1a59842c' \
     -H 'x-api-key: NYHvsNWbFB6fQ7C0nP0TV2H7xpvVTcMvaHeYspwQ' \
@@ -515,7 +516,7 @@ HTTP/1.1 403 Forbidden
 
   # Send file message to a user
   curl -X POST \
-    https://eko-api.com/messages \
+    https://eko-api.com/v0/messages \
     -H 'content-type: multipart/form-data' \
     -H 'eko-api-key: 763de5858b2414750bf947fb1a59842c' \
     -H 'x-api-key: NYHvsNWbFB6fQ7C0nP0TV2H7xpvVTcMvaHeYspwQ' \
@@ -547,6 +548,57 @@ HTTP/1.1 403 Forbidden
   'ppt' => 'application/vnd.ms-powerpoint'
   'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
   'xls' => 'application/vnd.ms-excel'
+  ```
+
+  #### 2. Send text message
+  ###### POST /v0/text-messages
+  This method is similar to the previous method, but **only support sending text message**. In case you have trouble making a request with `Content-type: multipart/form-data`,
+  use this method instead as it accept `Content-type: application/json`.
+  * To send the content to a workspace, specify `workspace_id` and `topic_id` as a parameter.
+  * To send the content to a user privae chat, specify `user_id` as a parameter.
+
+
+  | Request Body | Required | Default | Description |
+  | ------------ | -------- | ------- | ----------- |
+  | workspace_id | required when sending content to workspace | | id of workspace to sent message to |
+  | topic_id     | required when sending content to workspace | | id of topic to sent message to |
+  | user_id      | required when sending content to user      | | id of user to sent message to |
+  | message      | required when sending file                 | | file to be sent |
+
+  **Curl example**
+  ```bash
+  # Send text message to a workspace
+  curl -X POST \
+    https://eko-api.com/v0/text-messages \
+    -H 'content-type: application/json' \
+    -H 'eko-api-key: 763de5858b2414750bf947fb1a59842c' \
+    -H 'x-api-key: NYHvsNWbFB6fQ7C0nP0TV2H7xpvVTcMvaHeYspwQ' \
+    -d '{
+    "workspace_id": "57f2020d9b4dc14db42a1fc5",
+    "topic_id": "58f2020d9b4dc14db42a1fc6",
+    "message_data": "Hello Eko!"
+  }'
+
+  # Send text message to a user
+  curl -X POST \
+    https://eko-api.com/v0/text-messages \
+    -H 'content-type: application/json' \
+    -H 'eko-api-key: 763de5858b2414750bf947fb1a59842c' \
+    -H 'x-api-key: NYHvsNWbFB6fQ7C0nP0TV2H7xpvVTcMvaHeYspwQ' \
+    -d '{
+    "user_id": "57f2020d9b4dc14db42a1fc2",
+    "message_data": "Hello Eko!"
+  }'
+
+  ```
+
+  **Response sample**
+  ```json5
+  {
+    message_data: "Hello Eko!",
+    message_id: "57f2020d9b4dc14db42a1fc0",
+    message_type: "text"
+  }
   ```
 
 ### FAQ
